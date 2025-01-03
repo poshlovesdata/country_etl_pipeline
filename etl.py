@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
+import os
 from sqlalchemy import create_engine
+from sqlalchemy.orm import close_all_sessions
 
 def extract() -> dict:
     """Extracts the relevant information from the input data."""
@@ -30,10 +32,11 @@ def transform(data:dict)-> pd.DataFrame:
 
 def load(df:pd.DataFrame) -> None:
     """Loads the extracted data into a SQLite."""
-    
+
     # Create a connection to the SQLite database
-    disk_engine = create_engine('sqlite:///countries.db')
+    disk_engine = create_engine("sqlite:///.\\countries.db")
     df.to_sql('countries', disk_engine, if_exists='replace')
+    close_all_sessions()
 
 # initalize etl functions
 extracted_data = extract()
