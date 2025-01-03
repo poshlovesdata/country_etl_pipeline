@@ -34,7 +34,7 @@ Below is a simple architecture of the pipeline:
    ```
 2. Navigate into the project directory:
    ```bash
-   cd your-repo-name
+   cd country_etl_pipeline
    ```
 3. Install the requirements:
    ```bash
